@@ -3,9 +3,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pid/page/home.dart';
 import 'package:video_player/video_player.dart';
 
 import '../common/app.dart';
+import '../common/routes.dart';
 
 /*
    登录页面
@@ -36,8 +38,8 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
    */
   Widget? content;
 
-  double start =0;
-  double end=200.0;
+  double start = 0;
+  double end   = 200.0;
 
   late Animation<double> animation;
   late AnimationController controller;
@@ -102,6 +104,7 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
     // TODO: implement dispose
     super.dispose();
     _controller.pause();
+    controller.dispose();
   }
 
   @override
@@ -144,7 +147,7 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
                     child: Row(
                       children: [
                         Expanded(child: Container()),
-                        Image(image: const AssetImage("assets/img/microsoft.png"), width: 30,height: 30,  fit: BoxFit.cover,),
+                        const Image(image:  AssetImage("assets/img/microsoft.png"), width: 30,height: 30,  fit: BoxFit.cover,),
                         const SizedBox(
                           width: 20,
                         ),
@@ -234,7 +237,9 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
                        child: ClipRRect(
                          borderRadius: BorderRadius.circular(18.0),
                          child: MaterialButton(
-                           onPressed: () {},
+                           onPressed: () {
+                             Routes.navigateTo(context, const HomeWidget());
+                           },
                            child: Row(
                              children: [
                                Expanded(child: Container()),

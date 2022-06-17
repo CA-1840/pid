@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   video_player: ^2.4.4
+  vibrate:
+    path: '../vibrate_master'
+
 
 dev_dependencies:
   flutter_test:

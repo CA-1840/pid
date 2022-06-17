@@ -196,6 +196,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  vibrate:
+    dependency: "direct main"
+    description:
+      path: "../vibrate_master"
+      relative: true
+    source: path
+    version: "0.0.4"
   video_player:
     dependency: "direct main"
     description:
