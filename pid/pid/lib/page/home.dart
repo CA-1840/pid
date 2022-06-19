@@ -2,9 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easy_permission/flutter_easy_permission.dart';
+import 'package:pid/page/sqr.dart';
 import 'package:vibrate/vibrate.dart';
 
 import '../common/app.dart';
+import '../common/routes.dart';
+
+import 'package:flutter_easy_permission/constants.dart';
+import 'package:flutter_easy_permission/easy_permissions.dart';
 
 /*
     页面
@@ -63,11 +69,28 @@ class Home extends State<HomeWidget> {
     },
   ];
 
+  final  _permissions =  [
+    Permissions.READ_EXTERNAL_STORAGE,
+    Permissions.CAMERA
+  ];
+
+  final  _permissionGroup =  [
+    PermissionGroup.Camera,
+    PermissionGroup.Photos
+  ];
+
+  late Widget page;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    FlutterEasyPermission().addPermissionCallback(
+        onGranted: (requestCode, perms,perm) {
+           Routes.navigateTo(context, page);
+        },
+        onDenied: (requestCode, perms,perm, isPermanent) {
+
+        });
   }
 
   @override
@@ -98,7 +121,7 @@ class Home extends State<HomeWidget> {
             ],
           ),
           const SizedBox(
-            height: 35,
+            height: 20,
           ),
           Row(
             children: [
@@ -126,6 +149,10 @@ class Home extends State<HomeWidget> {
               GestureDetector(
                 onTap: (){
                   Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                  setState(() {
+                    page=const SqrWidget();
+                  });
+                  permissionCheck(const SqrWidget());
                 },
                 child: Container(
                   padding: const EdgeInsets.only(left: 23,right: 23,top: 23,bottom: 23),
@@ -190,5 +217,17 @@ class Home extends State<HomeWidget> {
       ),
     );
   }
+
+
+  permissionCheck(toPage) async {
+     // 如果没有权限则请求
+     if (!await FlutterEasyPermission.has(perms: _permissions,permsGroup: _permissionGroup)) {
+           FlutterEasyPermission.request(perms: _permissions,permsGroup: _permissionGroup);
+     } else {
+     // 有权限则调用
+       Routes.navigateTo(context, toPage);
+     }
+ }
+
 
 }

@@ -37,7 +37,9 @@ dependencies:
   video_player: ^2.4.4
   vibrate:
     path: '../vibrate_master'
-
+  flutter_scankit: ^1.2.4
+  flutter_easy_permission: ^1.1.2
+  toast: ^0.1.5
 
 dev_dependencies:
   flutter_test:
