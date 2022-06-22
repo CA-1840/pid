@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_permission/flutter_easy_permission.dart';
+import 'package:pid/page/programme.dart';
 import 'package:pid/page/sqr.dart';
 import 'package:vibrate/vibrate.dart';
 
@@ -11,6 +12,8 @@ import '../common/routes.dart';
 
 import 'package:flutter_easy_permission/constants.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
+
+import 'camera.dart';
 
 /*
     页面
@@ -71,12 +74,13 @@ class Home extends State<HomeWidget> {
 
   final  _permissions =  [
     Permissions.READ_EXTERNAL_STORAGE,
-    Permissions.CAMERA
+    Permissions.CAMERA,
+    Permissions.RECORD_AUDIO
   ];
 
   final  _permissionGroup =  [
     PermissionGroup.Camera,
-    PermissionGroup.Photos
+    PermissionGroup.Photos,
   ];
 
   late Widget page;
@@ -129,6 +133,11 @@ class Home extends State<HomeWidget> {
               GestureDetector(
                 onTap: (){
                   Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                  //CameraWidget
+                  setState(() {
+                    page=const ProgrammeWidget();
+                  });
+                  permissionCheck(const ProgrammeWidget());
                 },
                 child: Container(
                   padding: const EdgeInsets.only(left: 23,right: 23,top: 23,bottom: 23),

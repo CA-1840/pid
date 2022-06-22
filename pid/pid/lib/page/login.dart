@@ -57,9 +57,6 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
         _controller.play();
         _controller.setLooping(true);
         // _controller.setVolume(0.0);
-        Timer.periodic(const Duration(seconds: 15), (Timer time) {
-          print(time);
-        });
       });
 
   }
