@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +46,13 @@ class Camera extends State<CameraWidget> {
   int slice=0;
   List<File> image=[];
 
+  AudioCache player=AudioCache();
+  AudioPlayer audioPlayer = AudioPlayer();
+
+
   @override
   void initState() {
+
     super.initState();
     _camera();
   }
@@ -153,6 +159,7 @@ class Camera extends State<CameraWidget> {
               child: MaterialButton(
                 onPressed: () async {
                   print("第：$slice 张");
+                  audioPlayer.play(AssetSource("sounds/dog.wav"));
                   if(image.length<3){
                     XFile takePicture = await _cameraController.takePicture();
                     setState(() {
@@ -172,7 +179,7 @@ class Camera extends State<CameraWidget> {
                         gravity: Toast.CENTER);
                   }
                 },
-                child:  Text(
+                child: Text(
                   slice==0? "Angle one":slice==1?"Angle two":slice==2?"Angle three":"complete",
                   style:
                   const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),

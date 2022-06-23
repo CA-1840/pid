@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easy_permission/flutter_easy_permission.dart';
 import 'package:pid/page/programme.dart';
 import 'package:pid/page/sqr.dart';
+import 'package:pid/page/user_info.dart';
 import 'package:vibrate/vibrate.dart';
 
 import '../common/app.dart';
@@ -107,9 +108,14 @@ class Home extends State<HomeWidget> {
           Row(
             children: [
               const SizedBox(width: 20,),
-              const CircleAvatar(
-                radius: 35,
-                backgroundImage: AssetImage("assets/img/avatar.png"),
+              GestureDetector(
+                onTap: (){
+                  Routes.navigateTo(context, const UserInfoWidget());
+                },
+                child: const CircleAvatar(
+                  radius: 35,
+                  backgroundImage: AssetImage("assets/img/avatar.png"),
+                ),
               ),
               const SizedBox(width: 15,),
               Column(
