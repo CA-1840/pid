@@ -169,12 +169,12 @@ class Camera extends State<CameraWidget> {
                       image.add(File(takePicture.path));
                     });
                     if(widget.type==1){
-                      Toast.show("拍照成功", context,
+                      Toast.show("succeed", context,
                           duration: Toast.LENGTH_LONG,
                           gravity: Toast.CENTER);
                     }
                   }else{
-                    Toast.show("拍照完成等待分发业务", context,
+                    Toast.show("succeed", context,
                         duration: Toast.LENGTH_LONG,
                         gravity: Toast.CENTER);
                   }
