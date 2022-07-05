@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_permission/flutter_easy_permission.dart';
+import 'package:pid/page/picture_confirmation.dart';
 import 'package:pid/page/programme.dart';
 import 'package:pid/page/sqr.dart';
 import 'package:pid/page/user_info.dart';
@@ -126,7 +127,12 @@ class Home extends State<HomeWidget> {
                 ],
               ),
               Expanded(child: Container()),
-              const Image(image: AssetImage("assets/img/set.png"), width: 30,height: 30,  fit: BoxFit.cover,),
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: const Image(image: AssetImage("assets/img/set.png"), width: 30,height: 30,  fit: BoxFit.cover,),
+              ),
               const SizedBox(width: 20,),
             ],
           ),

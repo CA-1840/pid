@@ -7,9 +7,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:pid/page/picture_confirmation.dart';
 import 'package:toast/toast.dart';
 
 import '../common/app.dart';
+import '../common/routes.dart';
 
 /*
     相机页面
@@ -169,14 +171,12 @@ class Camera extends State<CameraWidget> {
                       image.add(File(takePicture.path));
                     });
                     if(widget.type==1){
-                      Toast.show("succeed", context,
+                      Toast.show("拍照成功", context,
                           duration: Toast.LENGTH_LONG,
                           gravity: Toast.CENTER);
                     }
                   }else{
-                    Toast.show("succeed", context,
-                        duration: Toast.LENGTH_LONG,
-                        gravity: Toast.CENTER);
+                    Routes.navigateTo(context,  PictureConfirmationWidget(image));
                   }
                 },
                 child: Text(
