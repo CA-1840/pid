@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pid/page/result_page.dart';
 import 'dart:io';
 import '../common/app.dart';
+import '../common/routes.dart';
 
 /*
    图片确认页面
@@ -120,7 +122,7 @@ class PictureConfirmation extends State<PictureConfirmationWidget> {
               borderRadius: BorderRadius.circular(18.0),
               child: MaterialButton(
                 onPressed: () {
-
+                  Routes.navigateTo(context, const ResultWidget());
                 },
                 child: Row(
                   children: [

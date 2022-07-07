@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easy_permission/flutter_easy_permission.dart';
 import 'package:pid/page/picture_confirmation.dart';
 import 'package:pid/page/programme.dart';
+import 'package:pid/page/result_page.dart';
 import 'package:pid/page/sqr.dart';
 import 'package:pid/page/user_info.dart';
 import 'package:vibrate/vibrate.dart';
@@ -129,7 +130,7 @@ class Home extends State<HomeWidget> {
               Expanded(child: Container()),
               GestureDetector(
                 onTap: (){
-
+                  Routes.navigateTo(context, const UserInfoWidget());
                 },
                 child: const Image(image: AssetImage("assets/img/set.png"), width: 30,height: 30,  fit: BoxFit.cover,),
               ),
