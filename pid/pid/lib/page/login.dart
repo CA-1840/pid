@@ -129,7 +129,7 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text("START YOUR IDENTIFICATION",style:TextStyle(color: Colors.white),),
+                const Text("START YOUR IDENTIFICATION",style:TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.w700),),
                 const SizedBox(
                   height: 20,
                 ),
@@ -171,7 +171,7 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
                     Expanded(child: Container()),
                     const Text(
                       "Copyright © 2022 - 2022 YN. All Rights Reserved.",
-                      style: TextStyle(color: Colors.white, fontSize: 13.0),
+                      style: TextStyle(color: Colors.blueGrey, fontSize: 13.0),
                     ),
                     Expanded(child: Container()),
                   ],
@@ -253,7 +253,7 @@ class Login extends State<LoginWidget> with TickerProviderStateMixin{
                              ],
                            ),
                            color:  App.hexToColor("#00549F"),
-                           textColor: Colors.white,
+                           textColor: Colors.blue,
                            height: 50.0,
                            elevation: 0.0,
                          ),

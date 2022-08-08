@@ -44,6 +44,8 @@ dependencies:
     path: '../camera-master'
   flutter_spinkit: ^5.1.0
   audioplayers: ^1.0.1
+  flutter_inappwebview: ^5.3.2
+
 
 dev_dependencies:
   flutter_test:

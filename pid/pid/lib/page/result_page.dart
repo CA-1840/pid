@@ -3,8 +3,10 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pid/page/web_view.dart';
 
 import '../common/app.dart';
+import '../common/routes.dart';
 
 /*
    结果 页面
@@ -57,82 +59,87 @@ class Result extends State<ResultWidget> {
       body: ListView(
         children: [
             const SizedBox(height: 20,),
-            Card(
-              shape: const RoundedRectangleBorder(
+            GestureDetector(
+              onTap: (){
+                Routes.navigateTo(context, const WebViewWidget());
+              },
+              child: Card(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              ),
-              margin: const EdgeInsets.only(left: 10,right: 10),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    const Image(image: AssetImage("assets/img/image1.png"),  fit: BoxFit.cover,),
-                    Positioned(
-                      child: SizedBox(
-                        key: GlobalKey(),
-                        height: MediaQuery.of(context).size.height*0.08,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(bottomRight:Radius.circular(8),bottomLeft: Radius.circular(8) ),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-                            child: Opacity(
-                              opacity: 0.2,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 60,
-                                decoration: BoxDecoration(color: Colors.grey.shade200),
+                ),
+                margin: const EdgeInsets.only(left: 10,right: 10),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(
+                    children: [
+                      const Image(image: AssetImage("assets/img/image1.png"),  fit: BoxFit.cover,),
+                      Positioned(
+                        child: SizedBox(
+                          key: GlobalKey(),
+                          height: MediaQuery.of(context).size.height*0.08,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(bottomRight:Radius.circular(8),bottomLeft: Radius.circular(8) ),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+                              child: Opacity(
+                                opacity: 0.2,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 60,
+                                  decoration: BoxDecoration(color: Colors.grey.shade200),
+                                ),
                               ),
                             ),
                           ),
                         ),
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
                       ),
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                    ),
-                    Positioned(
-                      child: Container(
-                        padding: const EdgeInsets.only(top: 15),
-                        height: MediaQuery.of(context).size.height*0.08,
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 15,),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children:const [
-                                Text("NAME:Halterung",style: TextStyle(color: Colors.black),),
-                                Text("BATCH:aqweqweWE3691",style: TextStyle(color: Colors.black),),
-                              ],
-                            ),
-                            const Expanded(child:  SizedBox()),
-                            const Image(image: AssetImage("assets/img/xinxi.png"), width: 25,height: 25,  fit: BoxFit.cover,),
-                            const SizedBox(width: 15,),
-                          ],
+                      Positioned(
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 15),
+                          height: MediaQuery.of(context).size.height*0.08,
+                          child: Row(
+                            children: [
+                              const SizedBox(width: 15,),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:const [
+                                  Text("NAME:Halterung",style: TextStyle(color: Colors.black),),
+                                  Text("BATCH:aqweqweWE3691",style: TextStyle(color: Colors.black),),
+                                ],
+                              ),
+                              const Expanded(child:  SizedBox()),
+                              const Image(image: AssetImage("assets/img/xinxi.png"), width: 25,height: 25,  fit: BoxFit.cover,),
+                              const SizedBox(width: 15,),
+                            ],
+                          ),
                         ),
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
                       ),
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                    ),
-                    Positioned(
-                      child: Container(
-                        padding: const EdgeInsets.only(top: 0),
-                        height: MediaQuery.of(context).size.height*0.05,
-                        child: Row(
-                          children: const [
-                             SizedBox(width: 15,),
-                             Text("LIKE",style: TextStyle(color: Colors.white),),
-                             Expanded(child:  SizedBox()),
-                             Text("98%",style: TextStyle(color: Colors.white),),
-                             SizedBox(width: 15,),
-                          ],
+                      Positioned(
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 0),
+                          height: MediaQuery.of(context).size.height*0.05,
+                          child: Row(
+                            children: const [
+                              SizedBox(width: 15,),
+                              Text("LIKE",style: TextStyle(color: Colors.white),),
+                              Expanded(child:  SizedBox()),
+                              Text("98%",style: TextStyle(color: Colors.white),),
+                              SizedBox(width: 15,),
+                            ],
+                          ),
                         ),
+                        top: 0,
+                        left: 0,
+                        right: 0,
                       ),
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
