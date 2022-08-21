@@ -41,9 +41,7 @@ class Sqr extends State<SqrWidget> {
               callback: (controller) {
                 _controller = controller;
                 controller.onResult.listen((result) {
-                  Toast.show("测试-扫码结果：$result", context,
-                      duration: Toast.LENGTH_SHORT,
-                      gravity: Toast.CENTER);
+                  Toast.show("测试-扫码结果：$result");
                   //  Navigator.of(context).pop(result);
                 });
               },

@@ -175,7 +175,8 @@ class Camera extends State<CameraWidget> {
                       // Toast.show("拍照成功", context,
                       //     duration: Toast.LENGTH_LONG,
                       //     gravity: Toast.CENTER);
-                      Routes.navigateTo(context, const ResultWidget());
+                     // Routes.navigateTo(context, const ResultWidget());
+                      Routes.redirectTo(context, const ResultWidget());
                     }
                   }else{
                     Routes.navigateTo(context,  PictureConfirmationWidget(image));

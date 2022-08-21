@@ -122,7 +122,7 @@ class PictureConfirmation extends State<PictureConfirmationWidget> {
               borderRadius: BorderRadius.circular(18.0),
               child: MaterialButton(
                 onPressed: () {
-                  Routes.navigateTo(context, const ResultWidget());
+                  Routes.redirectTo(context, const ResultWidget());
                 },
                 child: Row(
                   children: [

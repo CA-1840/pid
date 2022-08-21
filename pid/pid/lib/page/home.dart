@@ -1,14 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_permission/flutter_easy_permission.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pid/page/picture_confirmation.dart';
 import 'package:pid/page/programme.dart';
 import 'package:pid/page/result_page.dart';
+import 'package:pid/page/set_avatar.dart';
 import 'package:pid/page/sqr.dart';
 import 'package:pid/page/user_info.dart';
-import 'package:vibrate/vibrate.dart';
+import 'package:vibration/vibration.dart';
+//import 'package:vibrate/vibrate.dart';
 
 import '../common/app.dart';
 import '../common/routes.dart';
@@ -16,6 +20,7 @@ import '../common/routes.dart';
 import 'package:flutter_easy_permission/constants.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
 
+import 'batch_list.dart';
 import 'camera.dart';
 
 /*
@@ -88,9 +93,12 @@ class Home extends State<HomeWidget> {
 
   late Widget page;
 
+  late ImagePicker _picker;
+
   @override
   void initState() {
     super.initState();
+    _picker = ImagePicker();
     FlutterEasyPermission().addPermissionCallback(
         onGranted: (requestCode, perms,perm) {
            Routes.navigateTo(context, page);
@@ -111,8 +119,14 @@ class Home extends State<HomeWidget> {
             children: [
               const SizedBox(width: 20,),
               GestureDetector(
-                onTap: (){
-                  Routes.navigateTo(context, const UserInfoWidget());
+                onTap: () async {
+                 // Routes.navigateTo(context, const UserInfoWidget());
+                  PickedFile? image =
+                      await _picker.getImage(source: ImageSource.camera);
+                  print("得到相片：$image");
+                  if (image != null) {
+                    String result = await Navigator.push(context, MaterialPageRoute(builder: (context) => SetAvatarWidget(File(image.path))));
+                  }
                 },
                 child: const CircleAvatar(
                   radius: 35,
@@ -144,8 +158,12 @@ class Home extends State<HomeWidget> {
             children: [
               const SizedBox(width: 20,),
               GestureDetector(
-                onTap: (){
-                  Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                onTap: () async {
+                 // Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                 bool? isTrue= await Vibration.hasVibrator();
+                 if(isTrue!=null&&isTrue){
+                   Vibration.vibrate(duration: 100);
+                 }
                   //CameraWidget
                   setState(() {
                     page=const ProgrammeWidget();
@@ -169,8 +187,12 @@ class Home extends State<HomeWidget> {
               ),
               Expanded(child: Container()),
               GestureDetector(
-                onTap: (){
-                  Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                onTap: () async {
+                 // Vibrate.vibrateDelay(const Duration(milliseconds: 100));
+                  bool? isTrue= await Vibration.hasVibrator();
+                  if(isTrue!=null&&isTrue){
+                    Vibration.vibrate(duration: 100);
+                  }
                   setState(() {
                     page=const SqrWidget();
                   });
@@ -209,28 +231,33 @@ class Home extends State<HomeWidget> {
           Expanded(child: ListView(
             padding: const EdgeInsets.only(top: 0),
             children: List.generate(data.length, (index) {
-              return  Container(
-                margin: const EdgeInsets.only(left: 20,right: 20,top: 5,bottom: 5),
-                padding: const EdgeInsets.only(left: 0,right: 0,top: 20,bottom: 20),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 15,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("name:${data[index]['name']}",style:const TextStyle(color: Colors.black),),
-                        const SizedBox(height: 5,),
-                        Text("id:${data[index]['id']}",style:const TextStyle(color: Colors.black),)
-                      ],
-                    ),
-                    Expanded(child: Container()),
-                    Text(data[index]['date'],style:const TextStyle(color: Colors.black),),
-                    const SizedBox(width: 15,),
-                  ],
+              return  GestureDetector(
+                onTap: (){
+                  Routes.navigateTo(context, const BatchListWidget());
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(left: 20,right: 20,top: 5,bottom: 5),
+                  padding: const EdgeInsets.only(left: 0,right: 0,top: 20,bottom: 20),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 15,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("name:${data[index]['name']}",style:const TextStyle(color: Colors.black),),
+                          const SizedBox(height: 5,),
+                          Text("id:${data[index]['id']}",style:const TextStyle(color: Colors.black),)
+                        ],
+                      ),
+                      Expanded(child: Container()),
+                      Text(data[index]['date'],style:const TextStyle(color: Colors.black),),
+                      const SizedBox(width: 15,),
+                    ],
+                  ),
                 ),
               );
             }).toList(),

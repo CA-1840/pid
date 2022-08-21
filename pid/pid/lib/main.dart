@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // 去掉空安全  --no-sound-null-safety
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

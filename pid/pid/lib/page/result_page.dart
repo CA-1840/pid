@@ -3,10 +3,13 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pid/page/part_Info.dart';
 import 'package:pid/page/web_view.dart';
 
 import '../common/app.dart';
 import '../common/routes.dart';
+import 'batch_list.dart';
+import 'home.dart';
 
 /*
    结果 页面
@@ -45,7 +48,7 @@ class Result extends State<ResultWidget> {
               height: 30,
               fit: BoxFit.cover,
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () =>Routes.navigateTo(context, const HomeWidget()),
           ),
           automaticallyImplyLeading: true,
           title: const Text("Result",style: TextStyle(color: Colors.black,fontSize: 16),),
@@ -151,42 +154,58 @@ class Result extends State<ResultWidget> {
           const SizedBox(height: 10,),
           Column(
             children: List.generate(4, (index){
-              return Container(
-                decoration:  BoxDecoration(
-                    color:Colors.white,
-                    borderRadius:const BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: App.hexToColor("#E8E8E8"),
-                          offset: const Offset(5, 5),
-                          spreadRadius: 6,
-                          blurRadius: 10),
-                      const BoxShadow(
-                          color: Colors.white,
-                          offset: Offset(-3, -4),
-                          spreadRadius: 2,
-                          blurRadius: 10)
-                    ]
-                ),
-                margin: const EdgeInsets.only(left: 10,right: 10,top: 8,bottom: 8),
-                child: Row(
-                  children:  [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child:const Image(image:  AssetImage("assets/img/image1.png"), width: 80,height: 80,  fit: BoxFit.cover,),
-                    ),
-                    const SizedBox(width: 10,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:const [
-                        Text("NAME:Halterung",style: TextStyle(color: Colors.black),),
-                        Text("BATCH:aqweqweWE3691",style: TextStyle(color: Colors.black),)
-                      ],
-                    ),
-                    const Expanded(child: SizedBox()),
-                    const Text("98%",style:TextStyle(color: Colors.black),),
-                    const SizedBox(width: 10,),
-                  ],
+              return GestureDetector(
+                onTap: (){
+                 // Routes.navigateTo(context, const BatchListWidget());
+
+                },
+                child: Container(
+                  decoration:  BoxDecoration(
+                      color:Colors.white,
+                      borderRadius:const BorderRadius.all(Radius.circular(12)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: App.hexToColor("#E8E8E8"),
+                            offset: const Offset(5, 5),
+                            spreadRadius: 6,
+                            blurRadius: 10),
+                        const BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(-3, -4),
+                            spreadRadius: 2,
+                            blurRadius: 10)
+                      ]
+                  ),
+                  margin: const EdgeInsets.only(left: 10,right: 10,top: 8,bottom: 8),
+                  child: Row(
+                    children:  [
+                     GestureDetector(
+                       child:ClipRRect(
+                         borderRadius: BorderRadius.circular(12.0),
+                         child:const Image(image:  AssetImage("assets/img/image1.png"), width: 80,height: 80,  fit: BoxFit.cover,),
+                       ),
+                       onTap: (){
+                         Routes.navigateTo(context, const WebViewWidget());
+                       },
+                     ),
+                      const SizedBox(width: 10,),
+                       GestureDetector(
+                         onTap: (){
+                           Routes.navigateTo(context, const PartInfoWidget());
+                         },
+                         child:  Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children:const [
+                             Text("NAME:Halterung",style: TextStyle(color: Colors.black),),
+                             Text("BATCH:aqweqweWE3691",style: TextStyle(color: Colors.black),)
+                           ],
+                         ),
+                       ),
+                      const Expanded(child: SizedBox()),
+                      const Text("98%",style:TextStyle(color: Colors.black),),
+                      const SizedBox(width: 10,),
+                    ],
+                  ),
                 ),
               );
             }).toList(),

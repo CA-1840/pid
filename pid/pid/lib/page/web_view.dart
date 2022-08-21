@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+
 /*
     设置页面模板
  */
@@ -20,19 +21,7 @@ class WebView extends State<WebViewWidget> {
 
   final GlobalKey webViewKey = GlobalKey();
 
-  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-    crossPlatform: InAppWebViewOptions(
-      useShouldOverrideUrlLoading: true,
-      mediaPlaybackRequiresUserGesture: false,
-    ),
-    /// android 支持HybridComposition
-    android: AndroidInAppWebViewOptions(
-      useHybridComposition: true,
-    ),
-    ios: IOSInAppWebViewOptions(
-      allowsInlineMediaPlayback: true,
-    ),
-  );
+
 
 
   @override
@@ -64,10 +53,9 @@ class WebView extends State<WebViewWidget> {
           title: const Text("3D Model",style: TextStyle(color: Colors.black,fontSize: 16),),
       ),
       body: InAppWebView(
-        key: webViewKey,
-        initialUrlRequest: URLRequest(url: Uri.parse("http://192.168.0.108/A/examples/index.html")),
-        initialOptions: options,
-      )
+        initialUrlRequest:
+        URLRequest(url: Uri.parse("http://fly.dengjray.cn/A/examples/index.html")),
+      ),
     );
   }
 
